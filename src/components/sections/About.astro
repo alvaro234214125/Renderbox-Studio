@@ -1,0 +1,58 @@
+---
+// src/components/sections/About.astro
+import Target from "lucide-static/icons/target.svg";
+import MessagesSquare from "lucide-static/icons/messages-square.svg";
+import Cpu from "lucide-static/icons/cpu.svg";
+import NeuralNetwork from "../ui/NeuralNetwork.astro"; 
+
+const values = [
+  {
+    icon: Target,
+    title: "Enfoque en Resultados",
+    description:
+      "Nos obsesionamos con tus KPIs. Cada línea de código y cada pixel de diseño tiene un propósito orientado a tus metas de negocio.",
+  },
+  {
+    icon: MessagesSquare,
+    title: "Comunicación Transparente",
+    description:
+      "Te mantenemos informado en cada paso del proceso. Sin jerga técnica, solo conversaciones claras, honestas y productivas.",
+  },
+  {
+    icon: Cpu,
+    title: "Tecnología de Vanguardia",
+    description:
+      "Seleccionamos las herramientas más modernas y eficientes para garantizar que tu proyecto sea escalable, seguro y rápido.",
+  },
+];
+---
+
+<section id="nosotros" class="relative bg-gray-50 py-16 md:py-20 overflow-hidden">
+    <NeuralNetwork />
+
+    <!-- Contenido principal (no necesita cambios) -->
+    <div class="relative z-10 text-center max-w-5xl mx-auto px-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+            Más que una agencia, tu
+            <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 h-14 text-white pb-2">
+                socio tecnológico
+            </span>
+        </h2>
+
+        <p class="text-lg text-gray-700 mb-16 max-w-3xl mx-auto">
+            En Renderbox Studio, no solo construimos sitios web; creamos relaciones a
+            largo plazo. Nuestra misión es entender a fondo tus objetivos para traducirlos
+            en soluciones digitales que generen un impacto real y medible.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            {values.map((value) => (
+                <div class="group bg-white/60 backdrop-blur-sm border border-gray-200/80 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <img src={value.icon.src} alt={value.title} class="h-8 w-8 text-indigo-400 mb-4 transition-transform duration-300 group-hover:scale-110" />
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
+                    <p class="text-gray-600">{value.description}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

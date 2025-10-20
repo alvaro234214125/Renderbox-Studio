@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* Animated background lines */
+@keyframes float-vertical {
+	0% { transform: translateY(-10px); }
+	50% { transform: translateY(10px); }
+	100% { transform: translateY(-10px); }
+}
+
+.animated-lines { pointer-events: none; }
+.animated-line {
+	border-radius: 9999px;
+	filter: blur(6px);
+	transform-origin: center;
+	animation-name: float-vertical;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}

@@ -1,0 +1,29 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+
+// Esto permite que pases un título desde tus páginas
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Renderbox Studio - Creamos soluciones digitales a tu medida." />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/renderbox-logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    
+    <div class="px-6 md:px-20">
+      <slot />
+    </div>
+
+  </body>
+</html>

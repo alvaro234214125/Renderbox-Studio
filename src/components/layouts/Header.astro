@@ -1,0 +1,119 @@
+---
+// src/components/layouts/Header.astro
+
+const navLinks = [
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#proyectos", label: "Proyectos" },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50">
+  <div class="px-6 md:px-12 bg-white/80 backdrop-blur-sm">
+    <nav class="relative flex justify-between items-center h-24">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 text-xl font-bold text-gray-900 z-50">
+        <img src="/renderbox-logo-black.svg" alt="Renderbox Studio Logo" class="h-8 w-auto" />
+        <span>Renderbox Studio</span>
+      </a>
+
+      <!-- Navegación de Escritorio -->
+      <div class="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+        {navLinks.map((link) => (
+          <a href={link.href} class="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA de Escritorio -->
+      <a href="#contacto" class="hidden md:block bg-gray-900 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-gray-700 transition-colors duration-300">
+        Cotiza tu Proyecto
+      </a>
+
+      <!-- Botón de Menú Móvil (Hamburguesa / X) -->
+      <button id="menu-button" class="md:hidden z-50 p-2" aria-label="Abrir menú" aria-expanded="false">
+        <svg id="icon-menu" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Menú Lateral Deslizable (Sidebar) -->
+  <div id="sidebar" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+    <div class="p-8 pt-20 flex flex-col h-full relative">
+      <!-- Botón de cierre dentro del sidebar (si el usuario espera una 'X' en el menú) -->
+      <button id="sidebar-close-button" class="absolute top-8 right-6 p-2 rounded-md text-gray-700 hover:bg-gray-100" aria-label="Cerrar menú">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <nav class="flex flex-col gap-8 text-2xl">
+        {navLinks.map((link) => (
+          <a href={link.href} class="sidebar-link text-gray-800 hover:text-indigo-600 font-semibold">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <a href="#contacto" class="sidebar-link mt-auto w-full text-center bg-gray-900 text-white px-6 py-4 rounded-full font-semibold text-lg hover:bg-gray-700 transition-colors duration-300">
+        Cotiza tu Proyecto
+      </a>
+    </div>
+  </div>
+
+  <!-- Overlay (Fondo oscuro) -->
+  <div id="overlay" class="fixed inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-none z-30"></div>
+</header>
+
+<script>
+  // @ts-nocheck
+  const setupMobileMenu = () => {
+    const menuButton = document.getElementById('menu-button');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const sidebarCloseButton = document.getElementById('sidebar-close-button');
+    const body = document.body;
+
+    // Si alguno de los elementos clave no existe, no continuamos para evitar errores.
+    if (!menuButton || !sidebar || !overlay || !iconMenu || !iconClose) {
+      return;
+    }
+
+  /**
+   * Toggle the mobile menu visibility
+   * @param {boolean} isOpen
+   */
+  const toggleMenu = (isOpen) => {
+      sidebar.classList.toggle('translate-x-full', !isOpen);
+      overlay.classList.toggle('opacity-0', !isOpen);
+      overlay.classList.toggle('pointer-events-none', !isOpen);
+      iconMenu.classList.toggle('hidden', isOpen);
+      iconClose.classList.toggle('hidden', !isOpen);
+      body.classList.toggle('overflow-hidden', isOpen); // Bloquea el scroll del body
+      menuButton.setAttribute('aria-expanded', isOpen.toString());
+    };
+
+    menuButton.addEventListener('click', () => {
+      const isMenuOpen = sidebar.classList.contains('translate-x-full');
+      toggleMenu(isMenuOpen);
+    });
+
+    overlay.addEventListener('click', () => toggleMenu(false));
+    if (sidebarCloseButton) sidebarCloseButton.addEventListener('click', () => toggleMenu(false));
+    
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+  }
+
+  // Ejecutar cuando el DOM esté listo en el navegador
+  document.addEventListener('DOMContentLoaded', setupMobileMenu);
+</script>

@@ -1,0 +1,79 @@
+---
+// src/components/sections/Hero.astro
+import { Image } from 'astro:assets';
+import ImgHero from '../../assets/imgs/img-hero.png';
+---
+
+<section class="bg-gray-50 py-20 md:py-28 mt-8">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+      
+      <!-- Lado Derecho (Imagen): Se oculta en móvil, visible en escritorio -->
+      <div class="hidden md:flex justify-end items-center md:order-last">
+        <Image 
+          src={ImgHero} 
+          alt="Ilustración de un equipo trabajando en diseño y desarrollo web" 
+          class="w-full max-w-md md:max-w-xl h-auto rounded-2xl shadow-lg" 
+        />
+      </div>
+
+      <!-- Lado Izquierdo (Texto): Centrado en móvil, a la izquierda en escritorio -->
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Agencia de 
+          <!-- CAMBIO: Subrayado robusto y responsive -->
+          <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 h-14 text-white pb-1">
+              desarrollo
+          </span> 
+          y 
+          <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 h-14 text-white pb-1">
+              diseño web
+          </span> 
+          en Lima
+        </h1>
+        
+        <p class="text-lg text-gray-700 mb-10 max-w-lg mx-auto md:mx-0">
+          Nos especializamos en crear páginas web personalizadas y optimizadas que potencian el crecimiento de tu negocio. Convertimos visitantes en clientes.
+        </p>
+
+        <!-- CTA Button -->
+        <div class="mb-12">
+            <a href="#contacto" class="bg-indigo-500 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg">
+              Conversemos
+            </a>
+        </div>
+
+        <!-- Sección de Preguntas Frecuentes (FAQ) -->
+        <div class="space-y-4 border-t border-gray-200 max-w-xl mx-auto md:mx-0">
+          <details class="group border-b border-gray-200 py-4 text-left">
+            <summary class="flex justify-between items-center font-semibold text-gray-800 cursor-pointer list-none">
+              ¿Cuál es su proceso para desarrollar un sitio web?
+              <div class="relative h-5 w-5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+            </summary>
+            <p class="text-gray-600 pt-3">
+              Nuestro proceso es colaborativo: <strong>Descubrimiento</strong>, <strong>Diseño UX/UI</strong>, <strong>Desarrollo</strong>, y finalmente el <strong>Lanzamiento y Soporte</strong>.
+            </p>
+          </details>
+          
+          <details class="group border-b border-gray-200 py-4 text-left">
+            <summary class="flex justify-between items-center font-semibold text-gray-800 cursor-pointer list-none">
+              ¿Cuánto cuesta y cuánto tiempo toma?
+              <div class="relative h-5 w-5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+            </summary>
+            <p class="text-gray-600 pt-3">
+              Cada proyecto es único. El costo y tiempo dependen de la complejidad. Un proyecto puede tomar desde 4 semanas en adelante. Contáctanos para una cotización detallada.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
