@@ -36,7 +36,7 @@ const contactInfo = [
   <div class="w-full">
     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
       ¿Tienes un proyecto en mente? <br />
-      <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-2 h-12 sm:h-14 text-white pb-1 mt-2">
+      <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 sm:px-2 h-10 sm:h-14 text-white pb-1">
         Hablemos.
       </span>
     </h2>
@@ -47,19 +47,21 @@ const contactInfo = [
   </div>
 
   <!-- Contact Info (SIEMPRE alineado a la izquierda) -->
-  <div class="space-y-6 w-full text-left flex flex-col items-start">
-    {contactInfo.map(item => (
-      <a href={item.href} class="flex items-center gap-4 group">
-        <div class="bg-gray-100 p-3 rounded-lg group-hover:bg-indigo-100 transition-colors">
-          <Icon icon={item.icon} class="h-6 w-6 text-indigo-500" />
-        </div>
-        <div>
-          <p class="font-semibold text-gray-600">{item.label}</p>
-          <p class="text-lg font-medium text-gray-900 group-hover:text-indigo-500 transition-colors">{item.value}</p>
-        </div>
-      </a>
-    ))}
-  </div>
+<div class="space-y-6 w-full text-left flex flex-col items-start">
+  {contactInfo.map(item => (
+    <a href={item.href} class="flex items-center gap-4 group w-full">
+      <div class="bg-gray-100 p-3 rounded-lg group-hover:bg-indigo-100 transition-colors flex-shrink-0">
+        <Icon icon={item.icon} class="h-6 w-6 text-indigo-500" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold text-gray-600 text-sm sm:text-base">{item.label}</p>
+        <p class="font-medium text-gray-900 group-hover:text-indigo-500 transition-colors text-sm sm:text-lg break-words">
+          {item.value}
+        </p>
+      </div>
+    </a>
+  ))}
+</div>
 </div>
 
 
