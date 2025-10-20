@@ -4,7 +4,7 @@ export default function WhatsappChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
 
-  const whatsappNumber = "51953212812"; // <-- tu número con código de país
+  const whatsappNumber = "51953212812"; // tu número con código de país
 
   const handleSend = () => {
     const base = `https://wa.me/${whatsappNumber}`;
@@ -19,13 +19,20 @@ export default function WhatsappChat() {
       {/* Botón flotante */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition"
+        className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition overflow-hidden outline-none focus:ring-0 focus:outline-none border-0"
+        style={{
+          WebkitTapHighlightColor: "transparent", // elimina borde gris en iOS
+        }}
       >
         <img
-    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-    alt="WhatsApp"
-    className="w-9 h-9"
-  />
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          className="w-9 h-9 block object-contain"
+          style={{
+            display: "block",
+            background: "transparent",
+          }}
+        />
       </button>
 
       {/* Chat flotante */}
