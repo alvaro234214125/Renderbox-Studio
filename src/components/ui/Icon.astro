@@ -1,0 +1,10 @@
+---
+// src/components/ui/Icon.astro
+interface Props {
+  icon: string;
+  class?: string;
+}
+
+const { icon, class: className } = Astro.props;
+---
+<div class:list={["icon-container", className]} set:html={icon} />
