@@ -1,31 +1,36 @@
 ---
 // src/components/sections/Portfolio.astro
 import { Image } from "astro:assets";
-
+import ArrowUpRight from "lucide-static/icons/arrow-up-right.svg?raw";
+import Icon from "../ui/Icon.astro";
 // --- DATOS DE TUS PROYECTOS ---
 // Simplemente añade o quita objetos de este array para gestionar tu portafolio.
 const projects = [
   {
-    title: "Sistema de Gestión Académica",
-    description: "Desarrollamos una plataforma web completa para la administración de alumnos, matrículas, pagos, asistencias y notas. Una solución robusta desplegada en la nube para máxima disponibilidad y seguridad.",
-    image: "/projects/sistema-gestion.webp", // Reemplaza con la captura de tu sistema
-    tags: ["React", "Java", "MySQL", "AWS", "Sistema Web"],
-    link: "https://www.campusvirtualinyawaperu.com/", // Si tienes un demo, pon el enlace aquí
+    title: "Sitio Web Institucional",
+    category: "Pagina Web Profesional & SEO",
+    coverImage: "/projects/web-institucional.webp",
+    link: "https://inyawaperu.pe/",
   },
   {
-    title: "Sitio Web para Institución Educativa",
-    description: "Diseño y desarrollo de un portal web dinámico y fácil de administrar para una institución, utilizando un constructor visual para la gestión de contenido y funcionalidades a medida con JavaScript.",
-    image: "/projects/web-institucional.webp", // Reemplaza con la captura de la web
-    tags: ["WordPress", "Elementor", "JavaScript", "Sitio Web"],
-    link: "https://inyawaperu.pe/", // Reemplaza con el enlace real de la página
+    title: "Portafolio Personal",
+    category: "Pagina Web Profesional & SEO",
+    coverImage: "/projects/portafolio-personal.webp",
+    link: "https://alvarodiazchang.netlify.app/",
   },
-];
+  {
+    title: "Sistema de Gestión Académica",
+    category: "Plataforma Web & AWS",
+    coverImage: "/projects/sistema-gestion.webp",
+    link: "https://www.campusvirtualinyawaperu.com/", // Si no tiene enlace, puedes poner "#" o la URL de un caso de estudio
+  },
+];  
 
 const processSteps = [
-    { title: "Descubrimiento", description: "Entendemos tus metas y definimos la estrategia." },
-    { title: "Diseño UX/UI", description: "Creamos interfaces intuitivas y atractivas." },
-    { title: "Desarrollo", description: "Construimos tu proyecto con código limpio y escalable." },
-    { title: "Lanzamiento", description: "Desplegamos tu solución y te acompañamos en el proceso." },
+    { title: "Descubrimiento", description: "Entendemos tus metas." },
+    { title: "Diseño UX/UI", description: "Creamos interfaces atractivas." },
+    { title: "Desarrollo", description: "Construimos con código limpio." },
+    { title: "Lanzamiento", description: "Desplegamos tu solución." },
 ];
 
 ---
@@ -65,31 +70,35 @@ const processSteps = [
             </div>
       </div>
       </div>
-      <!-- Columna Derecha (Hará scroll) -->
-      <div class="flex flex-col gap-12">
+      <!-- Columna Derecha (Scroll con Mockups) -->
+      <div class="flex flex-col gap-8">
         {projects.map((project) => (
-          <a href={project.link} target="_blank" rel="noopener noreferrer" class="group block">
-            <div class="bg-gray-50/80 backdrop-blur-sm border border-gray-200/80 p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div class="overflow-hidden rounded-lg mb-6">
-                <!-- Usamos una etiqueta 'img' normal para assets en /public -->
-                <img
-                  src={project.image}
-                  alt={`Imagen del proyecto ${project.title}`}
-                  class="w-full h-auto object-cover aspect-video group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
-              <p class="text-gray-600 mb-4">{project.description}</p>
-              <div class="flex flex-wrap gap-2">
-                {project.tags.map(tag => (
-                  <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{tag}</span>
-                ))}
-              </div>
+          // CAMBIO: El contenedor ahora es una etiqueta <a>
+          <a 
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative aspect-video w-full rounded-2xl overflow-hidden text-left border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+          >
+            <img
+              src={project.coverImage}
+              alt={`Imagen del proyecto ${project.title}`}
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+            <div class="relative h-full flex flex-col justify-end p-8">
+              <h3 class="text-3xl font-bold text-white drop-shadow-lg">{project.title}</h3>
+              <p class="text-white/80 drop-shadow-md mt-1">{project.category}</p>
+            </div>
+            <div 
+              class="absolute top-6 right-6 bg-white/80 backdrop-blur-sm text-gray-900 h-12 w-12 rounded-full flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 z-10"
+              aria-hidden="true"
+            >
+              <Icon icon={ArrowUpRight} class="h-6 w-6" />
             </div>
           </a>
         ))}
       </div>
-
     </div>
   </div>
 </section>
