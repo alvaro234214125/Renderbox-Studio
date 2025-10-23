@@ -1,57 +1,97 @@
 ---
-// src/components/sections/About.astro
-import Target from "lucide-static/icons/target.svg";
-import MessagesSquare from "lucide-static/icons/messages-square.svg";
-import Cpu from "lucide-static/icons/cpu.svg";
-
 const values = [
-  {
-    icon: Target,
-    title: "Enfoque en Resultados",
-    description:
-      "Nos obsesionamos con tus KPIs. Cada línea de código y cada pixel de diseño tiene un propósito orientado a tus metas de negocio.",
-  },
-  {
-    icon: MessagesSquare,
-    title: "Comunicación Transparente",
-    description:
-      "Te mantenemos informado en cada paso del proceso. Sin jerga técnica, solo conversaciones claras, honestas y productivas.",
-  },
-  {
-    icon: Cpu,
-    title: "Tecnología de Vanguardia",
-    description:
-      "Seleccionamos las herramientas más modernas y eficientes para garantizar que tu proyecto sea escalable, seguro y rápido.",
-  },
+  {
+    image: "/src/assets/imgs/about/resultados.webp",
+    title: "Enfoque en Resultados",
+    description:
+      "Nos obsesionamos con tus KPIs. Cada línea de código y cada pixel de diseño tiene un propósito orientado a tus metas de negocio.",
+    class: "md:col-span-2 row-span-1", // más ancha
+  },
+  {
+    image: "/src/assets/imgs/about/comunicacion.webp",
+    title: "Comunicación Transparente",
+    description:
+      "Te mantenemos informado en cada paso del proceso. Sin jerga técnica, solo conversaciones claras, honestas y productivas.",
+    class: "md:col-span-1 row-span-1",
+  },
+  {
+    image: "/src/assets/imgs/about/tecnologia.webp",
+    title: "Tecnología de Vanguardia",
+    description:
+      "Seleccionamos las herramientas más modernas y eficientes para garantizar que tu proyecto sea escalable, seguro y rápido.",
+    class: "md:col-span-1 row-span-1",
+  },
+  {
+    image: "/src/assets/imgs/about/crecimiento.webp",
+    title: "Resultados que impulsan tu negocio",    
+    description:
+      "Potencia tu productividad, ahorra tiempo y escala tu empresa con soluciones digitales hechas a tu medida.",
+    class: "md:col-span-2 row-span-1", // nueva card amplia
+  },
 ];
 ---
 
-<section id="nosotros" class="relative bg-gray-50 pb-15 overflow-hidden scroll-mt-25">
-    <canvas data-plexus class="absolute inset-0 w-full h-full z-0"></canvas>
+<section
+  id="nosotros"
+  class="relative bg-gray-50 pb-10 md:pb-15 overflow-hidden scroll-mt-25"
+>
+  <canvas
+    data-plexus
+    class="absolute inset-0 w-full h-full z-0 opacity-50"
+  ></canvas>
 
-    <!-- Contenido principal (no necesita cambios) -->
-    <div class="relative z-10 text-center max-w-5xl mx-auto px-6 md:px-20">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-            Más que una agencia, tu
-            <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 sm:px-2 h-12 sm:h-14 text-white pb-2">
-                socio tecnológico
-            </span>
-        </h2>
+  <div class="relative z-10 text-center max-w-6xl mx-auto px-6 md:px-10">
+    <!-- Encabezado -->
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+      Más que una agencia, tu{" "}
+      <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-2 sm:px-3 h-12 sm:h-14 text-white pb-1">
+        socio tecnológico
+      </span>
+    </h2>
 
-        <p class="text-lg text-gray-700 mb-16 max-w-3xl mx-auto">
-            En Renderbox Studio, no solo construimos sitios web; creamos relaciones a
-            largo plazo. Nuestra misión es entender a fondo tus objetivos para traducirlos
-            en soluciones digitales que generen un impacto real y medible.
-        </p>
+    <p class="text-lg text-gray-700 mb-16 max-w-3xl mx-auto">
+      En Renderbox Studio, no solo construimos sitios web; creamos relaciones a
+      largo plazo. Nuestra misión es entender a fondo tus objetivos para
+      traducirlos en soluciones digitales que generen un impacto real y
+      medible.
+    </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {values.map((value) => (
-                <div class="group bg-white/60 backdrop-blur-sm border border-gray-200/80 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <img src={value.icon.src} alt={value.title} class="h-8 w-8 text-indigo-400 mb-4 transition-transform duration-300 group-hover:scale-110" />
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
-                    <p class="text-gray-600">{value.description}</p>
-                </div>
-            ))}
+    <!-- Bento Grid -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[260px] md:auto-rows-[300px] gap-6 md:[&>*:nth-child(1)]:col-span-2 md:[&>*:nth-child(4)]:col-span-3 lg:[&>*:nth-child(4)]:col-span-2"
+    >
+      {values.map((value) => (
+        <div
+          class={`relative rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 group ${value.class}`}
+        >
+          <!-- Imagen de fondo -->
+          <img
+            src={value.image}
+            alt={value.title}
+            class="absolute inset-0 w-full h-full object-cover brightness-90 group-hover:brightness-75 transition-all duration-500"
+            loading="lazy"
+          />
+
+          <!-- Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-500"
+          ></div>
+
+          <!-- Contenido -->
+          <div
+            class="relative z-10 p-8 flex flex-col justify-end h-full text-left"
+          >
+            <h3
+              class="text-2xl font-semibold text-white mb-3 drop-shadow-md group-hover:text-indigo-300 transition-colors"
+            >
+              {value.title}
+            </h3>
+            <p class="text-gray-100 text-sm leading-relaxed drop-shadow">
+              {value.description}
+            </p>
+          </div>
         </div>
+      ))}
     </div>
+  </div>
 </section>

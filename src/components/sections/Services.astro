@@ -1,8 +1,9 @@
 ---
 // src/components/sections/Services.astro
-import LayoutTemplate from "lucide-static/icons/layout-template.svg";
-import ShoppingCart from "lucide-static/icons/shopping-cart.svg";
-import Zap from "lucide-static/icons/zap.svg";
+import LayoutTemplate from "lucide-static/icons/layout-template.svg?raw";
+import ShoppingCart from "lucide-static/icons/shopping-cart.svg?raw";
+import Bot from "lucide-static/icons/bot.svg?raw";
+import CheckCircle from "lucide-static/icons/check-circle-2.svg?raw";
 import Icon from "../ui/Icon.astro";
 
 const services = [
@@ -10,56 +11,97 @@ const services = [
     icon: LayoutTemplate,
     title: "Diseño y Desarrollo Web",
     description:
-      "Creamos sitios web a medida, desde landing pages hasta complejas aplicaciones web. Nos enfocamos en un diseño intuitivo (UX/UI) y un desarrollo robusto que represente tu marca.",
+      "Creamos sitios web a medida, desde landing pages impactantes hasta complejas aplicaciones web, enfocados en diseño UX/UI y rendimiento.",
+    keyPoints: [
+      "Diseño responsive profesional",
+      "Optimización SEO básica incluida",
+      "Formularios de contacto integrados",
+      "1er año de Hosting y Dominio*",
+    ],
+    message: "Hola 👋, estoy interesado en un servicio de Diseño y Desarrollo Web.",
   },
   {
     icon: ShoppingCart,
     title: "E-commerce y Tiendas Online",
     description:
-      "Desarrollamos plataformas de comercio electrónico seguras y fáciles de gestionar. Integra pasarelas de pago, gestiona tu inventario y vende tus productos al mundo.",
+      "Desarrollamos tiendas virtuales seguras, escalables y fáciles de gestionar para que vendas tus productos 24/7.",
+    keyPoints: [
+      "Pasarelas de pago seguras",
+      "Gestión de inventario y pedidos",
+      "Diseño optimizado para conversión",
+      "Integración con redes sociales",
+    ],
+    message: "Hola 👋, me gustaría saber más sobre su servicio de E-commerce y Tiendas Online.",
   },
   {
-    icon: Zap,
-    title: "Optimización y SEO",
+    icon: Bot,
+    title: "Automatizaciones con IA",
     description:
-      "Aseguramos que tu sitio web no solo se vea bien, sino que también sea rápido y visible en Google. Optimizamos el rendimiento y aplicamos las mejores prácticas de SEO.",
+      "Optimizamos tus procesos de negocio implementando soluciones de inteligencia artificial y automatización a medida.",
+    keyPoints: [
+      "Chatbots inteligentes",
+      "Automatización de tareas repetitivas",
+      "Análisis de datos predictivo",
+      "Integración con tus sistemas actuales",
+    ],
+    message: "Hola 🤖, quiero información sobre Automatizaciones con IA para mi negocio.",
   },
 ];
 ---
 
-<section id="servicios" class="relative overflow-hidden mb-10 pb-20 pt-0 mt-20 scroll-mt-30">
-    <canvas data-plexus class="absolute inset-0 w-full h-full z-0"></canvas>
-    <div class="relative z-10">
-  <div class="container mx-auto px-6 md:px-20">
-    <!-- Encabezado de la sección -->
-    <div class="text-center mb-12">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-        Nuestros 
-        <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 sm:px-2 h-10 sm:h-14 text-white pb-1">
+<section id="servicios" class="relative overflow-hidden mb-10 pb-15 mb-10 md:mb-15 pt-0 mt-20 scroll-mt-30">
+  <canvas data-plexus class="absolute inset-0 w-full h-full z-0"></canvas>
+  <div class="relative z-10">
+    <div class="container mx-auto px-6 md:px-20">
+      <!-- Encabezado -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+          Nuestros
+          <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 sm:px-2 h-10 sm:h-14 text-white pb-1">
             Servicios
-        </span>
-      </h2>
-      <p class="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
-        Soluciones digitales diseñadas para impulsar tu negocio y alcanzar tus objetivos.
+          </span>
+        </h2>
+        <p class="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
+          Soluciones digitales diseñadas para impulsar tu negocio y alcanzar tus objetivos.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <div class="group flex flex-col h-full bg-gray-50/80 backdrop-blur-sm border border-gray-200/80 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Icon
+              icon={service.icon}
+              class="h-10 w-10 text-indigo-500 mb-6 transition-transform duration-300 group-hover:scale-110"
+            />
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+            <p class="text-gray-600 leading-relaxed mb-6 flex-grow">{service.description}</p>
+
+            <ul class="space-y-3 text-sm text-gray-600 border-t border-gray-200/80 pt-6">
+              {service.keyPoints.map((point) => (
+                <li class="flex items-center gap-2">
+                  <Icon icon={CheckCircle} class="h-4 w-4 text-green-500 flex-shrink-0" />
+                  <span class="leading-tight pt-1.5 pl-1">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Botón WhatsApp -->
+            <a
+              href={`https://wa.me/51953212812?text=${encodeURIComponent(service.message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-8 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-500 rounded-lg shadow hover:bg-indigo-600 transition-all duration-300 focus:ring-2 focus:ring-indigo-300"
+            >
+              Consultar por este servicio
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-xs text-gray-500 text-center mt-8">
+        *Hosting y Dominio (.com) incluidos por el primer año en servicios de Desarrollo Web. Aplican condiciones.
       </p>
     </div>
-
-    <!-- Grid de tarjetas de servicios -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {services.map((service) => (
-        <div class="group bg-gray-50/80 backdrop-blur-sm border border-gray-200/80 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-          <img
-            src={service.icon.src}
-            alt={service.title}
-            class="h-10 w-10 text-indigo-500 mb-6 transition-transform duration-300 group-hover:scale-110"
-          />
-          <h3 class="text-2xl font-bold text-gray-900 mb-3">
-            {service.title}
-          </h3>
-          <p class="text-gray-600 leading-relaxed">{service.description}</p>
-        </div>
-      ))}
-    </div>
-  </div>
   </div>
 </section>
