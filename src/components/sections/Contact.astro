@@ -31,7 +31,7 @@ const contactInfo = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
 
       <!-- Columna Izquierda -->
-<div class="flex flex-col items-center md:items-start text-center md:text-left">
+<div class="flex flex-col items-center md:items-start text-center md:text-left" data-aos="fade-up" >
   <!-- Bloque de título y descripción (centrado en móvil) -->
   <div class="w-full">
     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
@@ -46,10 +46,10 @@ const contactInfo = [
     </p>
   </div>
 
-  <!-- Contact Info (SIEMPRE alineado a la izquierda) -->
+  <!-- Contact Info -->
 <div class="space-y-6 w-full text-left flex flex-col items-start">
-  {contactInfo.map(item => (
-    <a href={item.href} class="flex items-center gap-4 group w-full">
+  {contactInfo.map((item, index) => (
+    <a href={item.href} class="flex items-center gap-4 group w-full" data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
       <div class="bg-gray-100 p-3 rounded-lg group-hover:bg-indigo-100 transition-colors flex-shrink-0">
         <Icon icon={item.icon} class="h-6 w-6 text-indigo-500" />
       </div>
@@ -66,7 +66,7 @@ const contactInfo = [
 
 
       <!-- Columna Derecha: Formulario -->
-      <div class="bg-gray-50/80 backdrop-blur-sm border border-gray-200/80 p-8 rounded-2xl shadow-sm">
+      <div class="bg-gray-50/80 backdrop-blur-sm border border-gray-200/80 p-8 rounded-2xl shadow-sm" data-aos="fade-up" data-aos-delay="200">
   <form 
     name="contact"
     method="POST"
@@ -194,7 +194,6 @@ const contactInfo = [
 
       const formData = new FormData(form);
 
-      // Asegurarse que existe input hidden form-name (Netlify)
       if (!form.querySelector('input[name="form-name"]')) {
         formData.append('form-name', form.getAttribute('name') || 'contact');
       }
@@ -215,7 +214,6 @@ const contactInfo = [
           showSuccess();
           form.reset();
         } else {
-          // Leer texto de respuesta para debug si hay cuerpo
           let text = '';
           try { text = await res.text(); } catch (err) { /* ignore */ }
           console.error('[Contact] Netlify response error', res.status, text);

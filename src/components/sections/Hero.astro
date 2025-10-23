@@ -1,10 +1,9 @@
 ---
 import HeroVideo from '../../assets/videos/hero-bg.mp4';
-import WhatsAppIcon from '../../assets/icons/whatsapp.svg'; // Asegúrate de tener este archivo
+import WhatsAppIcon from '../../assets/icons/whatsapp.svg';
 ---
 
 <section class="relative overflow-hidden h-[130vh] sm:h-[120vh] md:h-[100vh] flex flex-col items-center justify-center text-white">
-  <!-- Video de fondo con leve zoom -->
   <video 
     autoplay 
     muted 
@@ -14,16 +13,13 @@ import WhatsAppIcon from '../../assets/icons/whatsapp.svg'; // Asegúrate de ten
     class="absolute inset-0 w-full h-full object-cover scale-105"
   ></video>
 
-  <!-- Capa de oscurecimiento -->
   <div class="absolute inset-0 bg-black/50"></div>
-
-  <!-- Transición inferior grisácea -->
   <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-100 via-gray-100/60 to-transparent pointer-events-none"></div>
 
   <!-- Contenido principal -->
   <div class="relative z-10 container mx-auto px-6 md:px-20 text-center flex flex-col items-center justify-center pt-17">
     <div class="max-w-2xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6" data-aos="fade-up">
         Agencia de 
         <span class="inline-flex items-center justify-center bg-indigo-500 rounded-md px-1 sm:px-2 h-10 sm:h-14 text-white pb-1">
           desarrollo
@@ -35,12 +31,12 @@ import WhatsAppIcon from '../../assets/icons/whatsapp.svg'; // Asegúrate de ten
         en Lima
       </h1>
       
-      <p class="text-lg text-gray-100 mb-10 max-w-lg mx-auto">
+      <p class="text-lg text-gray-100 mb-10 max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="100">
         Nos especializamos en crear páginas web personalizadas y optimizadas que potencian el crecimiento de tu negocio. Convertimos visitantes en clientes.
       </p>
 
       <!-- CTA con ícono de WhatsApp -->
-      <div class="mb-12">
+      <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
         <a 
           href="https://wa.me/51953212812?text=Hola!%20Deseo%20cotizar%20mi%20proyecto"
           target="_blank"
@@ -53,7 +49,7 @@ import WhatsAppIcon from '../../assets/icons/whatsapp.svg'; // Asegúrate de ten
       </div>
 
       <!-- FAQ -->
-      <div class="space-y-4 border-t border-gray-200/40 max-w-xl mx-auto">
+      <div class="space-y-4 border-t border-gray-200/40 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="300">
         <details class="group border-b border-gray-200/40 py-4 text-left">
           <summary class="flex justify-between items-center font-semibold text-gray-100 cursor-pointer list-none">
             ¿Cuánto cuesta desarrollar una página web?
